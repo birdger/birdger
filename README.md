@@ -37,10 +37,15 @@
 
 <div align="center">
 
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=birdger&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=birdger&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" />
+![GitHub 概览](assets/stats.svg)
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=birdger&theme=tokyonight&hide_border=true" />
+![Followers](https://img.shields.io/github/followers/birdger?style=flat-square&color=82aaff&label=Followers)
+![Stars](https://img.shields.io/github/stars/birdger/daily-arxiv-digest?style=flat-square&color=82aaff&label=arXiv%20Radar%20Stars)
+![Last commit](https://img.shields.io/github/last-commit/birdger/daily-arxiv-digest?style=flat-square&color=82aaff&label=%E6%9C%80%E8%BF%91%E6%8F%90%E4%BA%A4)
+
+<img src="https://streak-stats.demolab.com/?user=birdger&theme=tokyonight&hide_border=true" />
+
+<sub>上方卡片由本仓库的 GitHub Actions 每周自动生成并提交，不依赖第三方统计服务。</sub>
 
 </div>
 

@@ -1,0 +1,45 @@
+name: Profile Stats
+
+# 每周一早上刷新个人主页的概览卡片（assets/stats.svg）。
+# 卡片是仓库里的静态文件，不依赖 github-readme-stats 之类的第三方实例，
+# 那些公共实例常年 503，README 里就会显示成裂图。
+on:
+  schedule:
+    - cron: '20 23 * * 0'   # UTC 周日 23:20 = 北京时间周一 07:20
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-stats
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 生成概览卡片
+        env:
+          GH_USER: birdger
+          OUT_FILE: assets/stats.svg
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/profile_stats.py
+
+      - name: 提交并推送
+        run: |
+          git config user.name  "${{ vars.GIT_NAME  || 'birdger' }}"
+          git config user.email "${{ vars.GIT_EMAIL || '116474921+birdger@users.noreply.github.com' }}"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "本次没有变化，跳过提交"
+            exit 0
+          fi
+          git commit -m "stats: 更新 GitHub 概览卡片"
+          git push
